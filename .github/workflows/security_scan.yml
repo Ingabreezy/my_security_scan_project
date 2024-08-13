@@ -1,0 +1,25 @@
+name: Advanced Security Scan
+
+on: [pull_request]
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit semgrep
+        pip install -r requirements.txt
+    - name: Run Advanced Security Scan
+      run: python advanced_security_scan.py
+    - name: Upload scan results
+      uses: actions/upload-artifact@v2
+      with:
+        name: security-scan-results
+        path: security_scan_report.txt
