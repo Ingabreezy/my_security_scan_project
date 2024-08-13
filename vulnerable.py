@@ -1,6 +1,8 @@
 import os
 import sqlite3
 
+# This is a test comment to trigger GitHub Actions
+
 # Hardcoded secret (A3: Sensitive Data Exposure)
 secret_key = "mysecretpassword"
 
